@@ -8,7 +8,11 @@ router.get('/', function(req, res, next) {
 
 /*GET product page */
 router.get('/product', (req, res, next) => {
-  res.render('product', { title: 'Home' });
+  res.render('product', { title: 'Shop' });
+});
+
+router.get('/login', (req, res) => {
+  res.render('loginregister', {title: 'Đăng nhập'});
 });
 
 module.exports = router;
