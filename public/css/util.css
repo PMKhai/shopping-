@@ -3583,7 +3583,9 @@ iframe {border: none;}
 .flex-col-r-sb,
 .flex-col {
 	-webkit-flex-direction: column;
-	-moz-flex-direction: col
+	-moz-flex-direction: col;
+}
+
 .flex-col-sa,
 .flex-col-c-m,
 .flex-col-l-m,
