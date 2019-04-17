@@ -11,6 +11,8 @@ router.get('/product', (req, res, next) => {
   res.render('product', { title: 'Shop' });
 });
 
+
+
 /*Get Login page. */
 router.get('/login', (req, res) => {
   res.render('login', {title: 'Đăng nhập'});
@@ -30,5 +32,15 @@ router.get('/forgot', (req, res) => {
 router.get('/info', (req, res) => {
   res.render('info', {title: 'Thông tin tài khoản'});
 });
+
+/*GET myoder page. */
+router.get('/myoder', (req, res, next) => {
+  res.render('myoder', { title: 'Lịch sử đơn hàng' });
+});
+/*GET detailoder page. */
+router.get('/detailoder', (req, res, next) => {
+  res.render('detailoder', { title: 'Lịch sử đơn hàng' });
+});
+
 
 module.exports = router;
