@@ -57,4 +57,28 @@ router.get('/about', (req, res, next) => {
 router.get('/contact', (req, res, next) => {
   res.render('contact', { title: 'Blog' });
 });
+/*GET checkout-1 page. */
+router.get('/checkout-1', (req, res, next) => {
+  res.render('checkout-1', { title: 'Blog' });
+});
+/*GET checkout-2 page. */
+router.get('/checkout-2', (req, res, next) => {
+  res.render('checkout-2', { title: 'Blog' });
+});
+/*GET checkout-3 page. */
+router.get('/checkout-3', (req, res, next) => {
+  res.render('checkout-3', { title: 'Blog' });
+});
+/*GET checkout-4 page. */
+router.get('/checkout-4', (req, res, next) => {
+  res.render('checkout-4', { title: 'Blog' });
+});
+/*GET checkout-5 page. */
+router.get('/checkout-5', (req, res, next) => {
+  res.render('checkout-5', { title: 'Blog' });
+});
+/*GET checkout-6 page. */
+router.get('/checkout-6', (req, res, next) => {
+  res.render('checkout-6', { title: 'Blog' });
+});
 module.exports = router;
