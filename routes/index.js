@@ -41,6 +41,20 @@ router.get('/myoder', (req, res, next) => {
 router.get('/detailoder', (req, res, next) => {
   res.render('detailoder', { title: 'Lịch sử đơn hàng' });
 });
-
-
+/*GET viewcart page. */
+router.get('/viewcart', (req, res, next) => {
+  res.render('viewcart', { title: 'Quản lý giỏ đồ' });
+});
+/*GET blog page. */
+router.get('/blog', (req, res, next) => {
+  res.render('blog', { title: 'Blog' });
+});
+/*GET about page. */
+router.get('/about', (req, res, next) => {
+  res.render('about', { title: 'Blog' });
+});
+/*GET blog page. */
+router.get('/contact', (req, res, next) => {
+  res.render('contact', { title: 'Blog' });
+});
 module.exports = router;
