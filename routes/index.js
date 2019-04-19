@@ -24,13 +24,13 @@ router.get('/register', (req, res) => {
 });
 
 /* Get Forgot password page.*/
-router.get('/forgot', (req, res) => {
+router.get('/forgotpassword', (req, res) => {
   res.render('forgotpassword', {title: 'Quên mật khẩu'});
 });
 
 /* Get Info page.*/
-router.get('/info', (req, res) => {
-  res.render('info', {title: 'Thông tin tài khoản'});
+router.get('/profile', (req, res) => {
+  res.render('profile', {title: 'Thông tin tài khoản'});
 });
 
 /*GET myoder page. */
@@ -84,5 +84,9 @@ router.get('/checkout-5', (req, res, next) => {
 /*GET checkout-6 page. */
 router.get('/checkout-6', (req, res, next) => {
   res.render('checkout-6', { title: 'Blog' });
+});
+/*GET faq page. */
+router.get('/faq', (req, res, next) => {
+  res.render('faq', { title: 'Blog' });
 });
 module.exports = router;
