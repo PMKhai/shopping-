@@ -41,6 +41,10 @@ router.get('/myoder', (req, res, next) => {
 router.get('/detailoder', (req, res, next) => {
   res.render('detailoder', { title: 'Lịch sử đơn hàng' });
 });
+/*GET wishlist page. */
+router.get('/wishlist', (req, res, next) => {
+  res.render('wishlist', { title: 'Quản lý yêu thích' });
+});
 /*GET viewcart page. */
 router.get('/viewcart', (req, res, next) => {
   res.render('viewcart', { title: 'Quản lý giỏ đồ' });
