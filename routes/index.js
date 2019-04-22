@@ -10,7 +10,10 @@ router.get('/', function(req, res, next) {
 router.get('/product', (req, res, next) => {
   res.render('product', { title: 'Shop' });
 });
-
+/*GET detail product page. */
+router.get('/product-detail', (req, res, next) => {
+  res.render('product-detail', { title: 'Shop' });
+});
 
 
 /*Get Login page. */
