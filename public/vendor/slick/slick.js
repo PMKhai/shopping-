@@ -715,9 +715,9 @@
                 }
                 break;
 
-            case 'index':
-                var index = event.data.index === 0 ? 0 :
-                    event.data.index || $target.index() * _.options.slidesToScroll;
+            case 'indexController.js':
+                var index = event.data.indexController === 0 ? 0 :
+                    event.data.indexController || $target.index() * _.options.slidesToScroll;
 
                 _.slideHandler(_.checkNavigable(index), false, dontAnimate);
                 $target.children().trigger('focus');
@@ -1252,7 +1252,7 @@
 
         _.changeSlide({
             data: {
-                message: 'index',
+                message: 'indexController.js',
                 index: parseInt(slide)
             }
         }, dontAnimate);
@@ -1388,7 +1388,7 @@
 
         if (_.options.dots === true) {
             $('li', _.$dots).on('click.slick', {
-                message: 'index'
+                message: 'indexController.js'
             }, _.changeSlide);
 
             if (_.options.accessibility === true) {
@@ -1840,7 +1840,7 @@
 
             _.changeSlide({
                 data: {
-                    message: 'index',
+                    message: 'indexController.js',
                     index: currentSlide
                 }
             }, false);

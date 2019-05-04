@@ -2477,7 +2477,7 @@ $.extend( $.effects, {
 			cssPosition = element.css( "position" ),
 			position = element.position();
 
-		// Lock in margins first to account for form elements, which
+		// Lock in margins first to customer for form elements, which
 		// will change margin if you explicitly set height
 		// see: http://jsfiddle.net/JZSMt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
 		// Support: Safari
@@ -2495,14 +2495,14 @@ $.extend( $.effects, {
 
 			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
 
-				// Convert inline to inline block to account for inline elements
+				// Convert inline to inline block to customer for inline elements
 				// that turn to inline block based on content (like img)
 				display: /^(inline|ruby)/.test( element.css( "display" ) ) ?
 					"inline-block" :
 					"block",
 				visibility: "hidden",
 
-				// Margins need to be set to account for margin collapse
+				// Margins need to be set to customer for margin collapse
 				marginTop: element.css( "marginTop" ),
 				marginBottom: element.css( "marginBottom" ),
 				marginLeft: element.css( "marginLeft" ),
@@ -4477,7 +4477,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		var keyCode = $.ui.keyCode,
 			length = this.headers.length,
-			currentIndex = this.headers.index( event.target ),
+			currentIndex = this.headers.indexController( event.target ),
 			toFocus = false;
 
 		switch ( event.keyCode ) {
@@ -4546,7 +4546,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		} else {
 
 			// make sure active index is correct
-			options.active = this.headers.index( this.active );
+			options.active = this.headers.indexController( this.active );
 		}
 
 		this._destroyIcons();
@@ -4735,7 +4735,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			return;
 		}
 
-		options.active = collapsing ? false : this.headers.index( clicked );
+		options.active = collapsing ? false : this.headers.indexController( clicked );
 
 		// When the call to ._toggle() comes after the class changes
 		// it causes a very odd bug in IE 8 (see #6720)
@@ -4820,7 +4820,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			adjust = 0,
 			boxSizing = toShow.css( "box-sizing" ),
 			down = toShow.length &&
-				( !toHide.length || ( toShow.index() < toHide.index() ) ),
+				( !toHide.length || ( toShow.indexController() < toHide.indexController() ) ),
 			animate = this.options.animate || {},
 			options = down && animate.down || animate,
 			complete = function() {
@@ -5155,7 +5155,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 			}
 
 			match = this._filterMenuItems( character );
-			match = skip && match.index( this.active.next() ) !== -1 ?
+			match = skip && match.indexController( this.active.next() ) !== -1 ?
 				this.active.nextAll( ".ui-menu-item" ) :
 				match;
 
@@ -12040,7 +12040,7 @@ $.widget( "ui.dialog", {
 		};
 		this.originalPosition = {
 			parent: this.element.parent(),
-			index: this.element.parent().children().index( this.element )
+			index: this.element.parent().children().indexController( this.element )
 		};
 		this.originalTitle = this.element.attr( "title" );
 		if ( this.options.title == null && this.originalTitle != null ) {
@@ -13954,16 +13954,16 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 					var item = ui.item.data( "ui-selectmenu-item" );
 
 					// Prevent inital focus from firing and check if its a newly focused item
-					if ( that.focusIndex != null && item.index !== that.focusIndex ) {
+					if ( that.focusIndex != null && item.indexController !== that.focusIndex ) {
 						that._trigger( "focus", event, { item: item } );
 						if ( !that.isOpen ) {
 							that._select( item, event );
 						}
 					}
-					that.focusIndex = item.index;
+					that.focusIndex = item.indexController;
 
 					that.button.attr( "aria-activedescendant",
-						that.menuItems.eq( item.index ).attr( "id" ) );
+						that.menuItems.eq( item.indexController ).attr( "id" ) );
 				}
 			} )
 			.menu( "instance" );
@@ -14301,12 +14301,12 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		var oldIndex = this.element[ 0 ].selectedIndex;
 
 		// Change native select element
-		this.element[ 0 ].selectedIndex = item.index;
+		this.element[ 0 ].selectedIndex = item.indexController;
 		this.buttonItem.replaceWith( this.buttonItem = this._renderButtonItem( item ) );
 		this._setAria( item );
 		this._trigger( "select", event, { item: item } );
 
-		if ( item.index !== oldIndex ) {
+		if ( item.indexController !== oldIndex ) {
 			this._trigger( "change", event, { item: item } );
 		}
 
@@ -14314,7 +14314,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	},
 
 	_setAria: function( item ) {
-		var id = this.menuItems.eq( item.index ).attr( "id" );
+		var id = this.menuItems.eq( item.indexController ).attr( "id" );
 
 		this.button.attr( {
 			"aria-labelledby": id,
@@ -17370,11 +17370,11 @@ $.widget( "ui.tabs", {
 		options.active = this._initialActive();
 
 		// Take disabling tabs via class attribute from HTML
-		// into account and update option properly.
+		// into customer and update option properly.
 		if ( $.isArray( options.disabled ) ) {
 			options.disabled = $.unique( options.disabled.concat(
 				$.map( this.tabs.filter( ".ui-state-disabled" ), function( li ) {
-					return that.tabs.index( li );
+					return that.tabs.indexController( li );
 				} )
 			) ).sort();
 		}
@@ -17412,7 +17412,7 @@ $.widget( "ui.tabs", {
 
 			// Check for a tab marked active via a class
 			if ( active === null ) {
-				active = this.tabs.index( this.tabs.filter( ".ui-tabs-active" ) );
+				active = this.tabs.indexController( this.tabs.filter( ".ui-tabs-active" ) );
 			}
 
 			// No active tab, set to false
@@ -17423,7 +17423,7 @@ $.widget( "ui.tabs", {
 
 		// Handle numbers: negative, out of range
 		if ( active !== false ) {
-			active = this.tabs.index( this.tabs.eq( active ) );
+			active = this.tabs.indexController( this.tabs.eq( active ) );
 			if ( active === -1 ) {
 				active = collapsible ? false : 0;
 			}
@@ -17446,7 +17446,7 @@ $.widget( "ui.tabs", {
 
 	_tabKeydown: function( event ) {
 		var focusedTab = $( $.ui.safeActiveElement( this.document[ 0 ] ) ).closest( "li" ),
-			selectedIndex = this.tabs.index( focusedTab ),
+			selectedIndex = this.tabs.indexController( focusedTab ),
 			goingForward = true;
 
 		if ( this._handlePageNav( event ) ) {
@@ -17598,7 +17598,7 @@ $.widget( "ui.tabs", {
 		// Get disabled tabs from class attribute from HTML
 		// this will get converted to a boolean if needed in _refresh()
 		options.disabled = $.map( lis.filter( ".ui-state-disabled" ), function( tab ) {
-			return lis.index( tab );
+			return lis.indexController( tab );
 		} );
 
 		this._processTabs();
@@ -17625,7 +17625,7 @@ $.widget( "ui.tabs", {
 		} else {
 
 			// make sure active index is correct
-			options.active = this.tabs.index( this.active );
+			options.active = this.tabs.indexController( this.active );
 		}
 
 		this._refresh();
@@ -17898,7 +17898,7 @@ $.widget( "ui.tabs", {
 			return;
 		}
 
-		options.active = collapsing ? false : this.tabs.index( tab );
+		options.active = collapsing ? false : this.tabs.indexController( tab );
 
 		this.active = clickedIsActive ? $() : tab;
 		if ( this.xhr ) {
@@ -17910,7 +17910,7 @@ $.widget( "ui.tabs", {
 		}
 
 		if ( toShow.length ) {
-			this.load( this.tabs.index( tab ), event );
+			this.load( this.tabs.indexController( tab ), event );
 		}
 		this._toggle( event, eventData );
 	},
@@ -18009,7 +18009,7 @@ $.widget( "ui.tabs", {
 
 		// meta-function to give users option to provide a href string instead of a numerical index.
 		if ( typeof index === "string" ) {
-			index = this.anchors.index( this.anchors.filter( "[href$='" +
+			index = this.anchors.indexController( this.anchors.filter( "[href$='" +
 				$.ui.escapeSelector( index ) + "']" ) );
 		}
 

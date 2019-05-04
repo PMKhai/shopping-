@@ -789,7 +789,7 @@ function getPopperOffsets(popper, referenceOffsets, placement) {
  * @argument {Array} arr
  * @argument prop
  * @argument value
- * @returns index or -1
+ * @returns indexController.js or -1
  */
 function find(arr, check) {
   // use native find if supported
@@ -808,7 +808,7 @@ function find(arr, check) {
  * @argument {Array} arr
  * @argument prop
  * @argument value
- * @returns index or -1
+ * @returns indexController.js or -1
  */
 function findIndex(arr, prop, value) {
   // use native findIndex if supported
@@ -1340,7 +1340,7 @@ function arrow(data, options) {
   var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
   // Compute the sideValue using the updated popper offsets
-  // take popper margin in account because we don't have this info available
+  // take popper margin in customer because we don't have this info available
   var popperMarginSide = getStyleComputedProperty(data.instance.popper, 'margin' + sideCapitalized).replace('px', '');
   var sideValue = center - getClientRect(data.offsets.popper)[side] - popperMarginSide;
 

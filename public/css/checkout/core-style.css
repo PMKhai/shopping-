@@ -57,16 +57,19 @@
 :: 2.0 Import All CSS
 ------------------ */
 
-@import '../css/bootstrap.min.css';
-@import '../css/owl.carousel.css';
-@import '../css/font-awesome.min.css';
-@import '../css/themify-icons.css';
-@import '../css/magnific-popup.css';
-@import '../css/animate.css';
-@import '../css/navigation.css';
-@import '../css/jquery-ui.min.css';
+
 
 /* -------------------
+@import '../css/owl.carousel.css';
+@import '../css/navigation.css';
+@import '../../vendor/bootstrap/css/bootstrap.min.css';
+
+@import "../../fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+@import '../../css/checkout/themify-icons.css';
+@import '../../vendor/MagnificPopup/jquery.magnific-popup.js';
+@import '../../vendor/animate/animate.css';
+
+@import '../../vendor/jqueryui/jquery-ui.min.css';
 :: 3.0 Common/Base CSS
 ------------------- */
 
@@ -600,7 +603,7 @@ img {
     border-radius: 0;
     font-size: 12px;
     height: 45px;
-    position: ;
+    position: relative ;
 }
 
 .hero_search_area form {
