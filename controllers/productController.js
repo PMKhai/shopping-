@@ -11,9 +11,12 @@ exports.product_list = async (req, res, next) => {
 
 exports.product_detail = async (req, res, next) => {
     const products = await product.detail(req.params.id);
+    const productsList = await product.list();
     console.log(products);
+    console.log(productsList);
     res.render('product/product-detail', {
         title: products.name,
-        products
+        products,
+        productsList
     })
 }
