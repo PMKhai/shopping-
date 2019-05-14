@@ -16,5 +16,13 @@ const list = async () => {
     return results;
 }
 
+const productsBySex = async (sexs) => {
+    const results = await dbs.production.collection('products').find({
+        sex: sexs
+    }).toArray();
+    return results;
+}
+
 exports.detail = detail;
 exports.list = list;
+exports.productsBySex = productsBySex;
