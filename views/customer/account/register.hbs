@@ -6,26 +6,27 @@
             <div class="col-12 col-md-8">
                 <div class="register_form text-center">
                     <h3 class="register-title">Đăng kí miễn phí</h3>
+                    {{message}}
                     <form action="#" method="post" class="text-left">
                         <div class="form-group">
                             <label for="user_name">Tên đăng nhập</label>
-                            <input type="email" class="form-control" id="user_name" placeholder="Username">
+                            <input  class="form-control" id="user_name" name="user_name" placeholder="Nhập Username">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Nhập Email">
                             <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock"></i> Chúng tôi sẽ không tiết lộ email cho bất cứ ai.</small>
                         </div>
                         <div class="form-group">
                             <label for="create_password">Tạo mật khẩu</label>
-                            <input type="password" id="create_password" class="form-control" aria-describedby="passwordHelpBlock">
+                            <input type="password" id="password" name="password" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Nhập mật khẩu">
                             <small id="passwordHelpBlock" class="form-text text-muted">Mật khẩu phải từ 8-20 kí tự, bao gồm chữ và số, và không có khoảng trắng, kí tự đặc biệt và biểu tượng cảm xúc</small>
                         </div>
                         <div class="form-group">
-                            <label for="confirm_password">Xác minh mật khẩu</label>
-                            <input type="password" id="confirm_password" class="form-control">
+                            <label for="confirm_password">Xác minh mật khẩu </label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Nhập lại mật khẩu">
                         </div>
-                        <a href="login" type="submit" class="btn bigshop-btn w-100">Đăng nhập</a>
+                        <button href="login" type="submit" class="btn bigshop-btn w-100">Đăng kí</button>
                     </form>
                     <div class="forget_pass mt-15">
                         <a href="login">Đã có tài khoản? Đăng nhập ngay</a>

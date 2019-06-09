@@ -3,6 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//authen zone
+const session = require("express-session");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+//
 
 //Customer
 ///Cart
@@ -15,13 +20,43 @@ var oderRouter = require('./routes/customer/oder');
 var profileRouter = require('./routes/customer/profile');
 var wishlistRouter = require('./routes/customer/wishlist');
 //Home
-var indexRouter = require('./routes/home');
+var indexRouter = require('./routes/home/index');
 var blogRouter = require('./routes/home/blog');
 var aboutRouter = require('./routes/home/about');
 var contactRouter = require('./routes/home/contact');
 var faqRouter = require('./routes/home/faq');
 //Product
 var productRouter = require('./routes/product');
+//
+const User = require('./models/user');
+
+passport.use(new LocalStrategy({usernameField: 'user_name'},
+    async function (user_name, password, done) {
+      try {
+        const user = await User.get(user_name);
+        if (!user) {
+          return done(null, false, {message: 'Incorrect username.'});
+        }
+        const isPasswordValid = await User.validPassword(user_name, password);
+        if (!isPasswordValid) {
+          return done(null, false, {message: 'Incorrect password.'});
+        }
+        return done(null, user);
+      } catch (ex) {
+        return done(ex);
+      }
+    }));
+
+passport.serializeUser(function (user, done) {
+  done(null, user.user_name);
+});
+
+passport.deserializeUser(async function (user_name, done) {
+  const user = await User.get(user_name);
+  done(undefined, user);
+});
+
+//
 
 
 var app = express();
@@ -32,10 +67,12 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({secret: "meo cats"}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Customer
 ////Cart

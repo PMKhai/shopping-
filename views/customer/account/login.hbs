@@ -13,14 +13,15 @@
                     <!-- sign in manual form -->
                     <div class="login_manual_form">
                         <p>or</p>
+                        {{message}}
                         <form action="#" method="post">
                             <div class="form-group">
                                 <label for="username">Tên tài khoản</label>
-                                <input type="email" class="form-control" id="username" placeholder="Username">
+                                <input  class="form-control" id="user_name" name="user_name" placeholder="Nhập tên tài khoản">
                             </div>
                             <div class="form-group">
                                 <label for="password">Mật khẩu</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
                             </div>
                             <div class="form-check">
                                 <div class="custom-control custom-checkbox mb-3">
@@ -28,7 +29,7 @@
                                     <label class="custom-control-label" for="customChe">Ghi nhớ tài khoản</label>
                                 </div>
                             </div>
-                            <a href="/" type="submit" class="btn bigshop-btn w-100">Đăng nhập</a>
+                            <button type="submit" class="btn bigshop-btn w-100">Đăng nhập</button>
                         </form>
                     </div>
                     <!--sign up -->
