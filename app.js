@@ -80,7 +80,7 @@ app.use('/checkout', checkoutRouter);
 app.use('/viewcart', viewcartRouter);
 //
 app.use('', accountRouter);
-app.use('/oder', oderRouter);
+app.use('/order', oderRouter);
 app.use('/profile', profileRouter);
 app.use('/wishlist', wishlistRouter);
 //home

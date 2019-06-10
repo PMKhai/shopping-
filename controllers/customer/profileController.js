@@ -1,5 +1,5 @@
 exports.profile = (req, res, next) => {
     res.render('customer/profile', {
-        tile: 'Trang chủ'
+        tile: 'Thông tin tài khoản',user: req.user
     });
 }
