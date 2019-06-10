@@ -23,8 +23,17 @@ const get = async (user_name) => {
     return await dbs.production.collection(USERS).findOne({user_name});
 };
 
+
 exports.get = get;
 
+const check = async (user_name) => {
+    const user = await dbs.production.collection(USERS).findOne({user_name});
+    if (user)
+        return true;
+    return false;
+};
+
+exports.check = check;
 exports.register = async (user_name,email, password) => {
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
     return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash});

@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var hbs = require('hbs');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -28,6 +29,7 @@ var faqRouter = require('./routes/home/faq');
 //Product
 var productRouter = require('./routes/product');
 //
+const apiUserRouter = require('./routes/api/user');
 const User = require('./models/user');
 
 passport.use(new LocalStrategy({usernameField: 'user_name'},
@@ -65,12 +67,31 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+var blocks = {};
+
+hbs.registerHelper('extend', function(name, context) {
+  var block = blocks[name];
+  if (!block) {
+    block = blocks[name] = [];
+  }
+
+  block.push(context.fn(this)); // for older versions of handlebars, use block.push(context(this));
+});
+
+hbs.registerHelper('block', function(name) {
+  var val = (blocks[name] || []).join('\n');
+
+  // clear the block
+  blocks[name] = [];
+  return val;
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: "meo cats"}));
+app.use(session({secret: "loancute"}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -91,7 +112,7 @@ app.use('/faq', faqRouter);
 app.use('/contact', contactRouter);
 //Product
 app.use('/product', productRouter);
-
+app.use('/api/user', apiUserRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

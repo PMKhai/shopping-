@@ -8,13 +8,8 @@ var index_controller = require('../../controllers/home/indexController');
 router.get('/', index_controller.index);
 
 /* GET product listing. */
-router.get('/', index_controller.product_list);
+//router.get('/', index_controller.product_list);
 /**/
 
-//router.get('/logout', homeControllers.logout);
-
-
-// /* Get product detail*/
-// router.get('/:id', product_controller.product_detail);
 
 module.exports = router;
