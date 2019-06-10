@@ -6,7 +6,7 @@ exports.index  = async (req, res, next) => {
     console.log(products);
     res.render('home/index', {
         tile: 'Trang chủ',
-        user: req.userController,
+        user: req.user,
         products
     });
 }
