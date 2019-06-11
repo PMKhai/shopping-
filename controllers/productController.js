@@ -8,7 +8,7 @@ exports.product_list = async (req, res, next) => {
     res.render('product/product', {
         title: "Cửa hàng",
         productdetail,
-        productList
+        productList,user: req.user
     })
 }
 
@@ -21,6 +21,6 @@ exports.product_detail = async (req, res, next) => {
     res.render('product/product-detail', {
         title: productdetail.name,
         productdetail,
-        productsList
+        productsList,user: req.user
     })
 }

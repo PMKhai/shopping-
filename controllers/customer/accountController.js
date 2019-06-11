@@ -1,13 +1,13 @@
 const userModel = require('../../models/user');
 exports.recover = (req, res, next) => {
     res.render("customer/account/forgotpassword", {
-        title: "S"
+        title: "Quên mật khẩu"
     });
 }
 
 exports.loginGet = (req, res, next) => {
     res.render("customer/account/login", {
-        title: "Chi Tiết"
+        title: "Đăng nhập" , message:''
     });
 }
 

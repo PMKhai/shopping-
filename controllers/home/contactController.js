@@ -1,5 +1,5 @@
 exports.contact = (req, res, next) => {
     res.render('home/contact', {
-        tile: 'Trang chủ'
+        tile: 'Trang chủ',user: req.user
     });
 }

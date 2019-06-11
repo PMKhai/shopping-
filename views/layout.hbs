@@ -111,13 +111,11 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
                            &nbsp   &nbsp  &nbsp  &nbsp
-                        <div class="dropdown">
+                        <div id="dropdown-user" class="dropdown">
                         <button class="glyphicon glyphicon-user"  >
                         </button>
-                        <div class="dropdown-content" >
-                            <li><a href="/login">Đăng nhập</a></li>
-                            <li><a href="/register">Đăng ký</a></li>
-                            <li><a href="/forgotpassword">Quên mật khẩu</a></li>
+                        <div  class="dropdown-content" >
+                            <li disabled="true"><a>Chào, {{user.user_name}} !</a ></li>
                             <li><a href="/profile">Thông tin tài khoản</a></li>
                             <li><a href="/order">Đơn hàng của bạn</a></li>
                             <li><a href="/logout">Đăng xuất</a></li>
@@ -785,6 +783,17 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 	</script>
 <!--===============================================================================================-->
 	<script src="/js/main.js"></script>
-    {{{block "scripts"}}}
+<!--===============================================================================================-->
+    {{{block "regiser-scripts"}}}
+    {{{block "login-script"}}}
+<!--===============================================================================================-->
+    <script>
+        if ($({{user}}).val() == null ) {
+            $('#dropdown-user').hide();
+        }
+
+    </script>
+<!--===============================================================================================-->
+
 </body>
 </html>

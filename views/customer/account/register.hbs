@@ -6,7 +6,6 @@
             <div class="col-12 col-md-8">
                 <div class="register_form text-center">
                     <h3 class="register-title">Đăng kí miễn phí</h3>
-                    {{message}}
                     <div class="ui-state-error" id="error-message"  ></div>
                     <form action="#" method="post" class="text-left">
                         <div class="form-group">
@@ -38,8 +37,9 @@
         </div>
     </div>
 </div>
-{{#extend "scripts"}}
+{{#extend "regiser-scripts"}}
     <script>
+        $('#error-message').hide();
         $('#user_name').keyup(function() {
             $.getJSON('/api/user/check?user_name='+$('#user_name').val(), function (data){
                 if (data) {
@@ -48,8 +48,10 @@
                     $("#register").attr("disabled", true);
                 }
                 else {
+
                     $('#error-message').hide();
                     $("#register").attr("disabled", false);
+
                 }
             })
         });

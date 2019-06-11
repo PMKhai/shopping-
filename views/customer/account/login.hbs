@@ -14,7 +14,7 @@
                     <div class="login_manual_form">
                         <p>or</p>
 
-                        {{message}}
+                        <div class="ui-state-error" id="error-message"  >{{message}}</div>
 
                         <form action="#" method="post">
                             <div class="form-group">
@@ -31,7 +31,7 @@
                                     <label class="custom-control-label" for="customChe">Ghi nhớ tài khoản</label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn bigshop-btn w-100">Đăng nhập</button>
+                            <button id="btn-login" type="submit" class="btn bigshop-btn w-100">Đăng nhập</button>
                         </form>
                     </div>
                     <!--sign up -->
@@ -48,3 +48,11 @@
         </div>
     </div>
 </div>
+{{#extend "login-script"}}
+    <script>
+
+        if ($({{message}}).val() == null ) {
+            $('#error-message').hide();
+        }
+    </script>
+{{/extend}}

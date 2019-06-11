@@ -1,5 +1,5 @@
 exports.wishlist = (req, res, next) => {
     res.render('customer/wishlist', {
-        tile: 'Trang chủ'
+        tile: 'Trang chủ',user: req.user
     });
 }
