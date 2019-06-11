@@ -22,9 +22,13 @@ exports.registerPost = async (req, res) => {
     if (user)
         return res.render('customer/account/register', {title: 'Đăng ký', message: 'Tài khoản đã tồn tại!'});
     await userModel.register(req.body.user_name,req.body.email, req.body.password);
-    res.redirect('./');
+    res.redirect('./login');
 };
 exports.logout = (req,res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('/login');
 };
+exports.updatePost = async (req, res, next) => {
+    await userModel.update(req.user.user_name,req.body);
+    res.redirect('./profile');
+}

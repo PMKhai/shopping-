@@ -36,9 +36,36 @@ const check = async (user_name) => {
 exports.check = check;
 exports.register = async (user_name,email, password) => {
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
-    return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash});
+    return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash,name:'',p_number:'',address:''});
 };
+exports.update = async (user_name,info) => {
+    if(info.update_password != "" )
+    {
+        const hash = await bcrypt.hash(info.update_password, SALT_ROUNDS);
+        return await dbs.production.collection(USERS).updateOne({
+            user_name : user_name
+        }, {
+            $set: {
+               password: hash
+            }
+        }, {
+            upsert: true
+        })
+    }
 
+    return await dbs.production.collection(USERS).updateOne({
+        user_name : user_name
+    }, {
+        $set: {
+            name: info.name,
+            address: info.address,
+            p_number: info.p_number,
+            email: info.email,
+        }
+    }, {
+        upsert: true
+    })
+};
 exports.validPassword = async (user_name, password) => {
     //const hash = await bcrypt.hash(password, SALT_ROUNDS);
     const user = await get(user_name);

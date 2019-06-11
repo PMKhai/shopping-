@@ -13,49 +13,48 @@
             </div>
 
             <div class="col-12 col-md-6">
+                <div class="ui-state-error" id="error-message"  ></div>
                 <div class="profile_form">
-                    <form action="#" method="post" class="text-left">
+                    <form action="#" method="POST" class="text-left">
                         <div class="row">
                             <div class="col-12 col-md">
+
                                 <div class="form-group">
-                                    <label for="first_name">Tên</label>
-                                    <input type="email" class="form-control" id="first_name">
+                                    <label for="first_name">Họ và tên</label>
+                                    <input type="text"  class="form-control" id="name" name="name" value="{{user.name}}">
                                 </div>
                             </div>
-                            <div class="col-12 col-md">
-                                <div class="form-group">
-                                    <label for="last_name">Họ và tên đệm</label>
-                                    <input type="email" class="form-control" id="last_name" >
-                                </div>
-                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="p_number">Số điện thoại</label>
-                            <input type="email" class="form-control" id="phone_number"  value="{{user.phone_number}}">
+                            <input type="text" class="form-control" id="p_number" name="p_number"  value="{{user.p_number}}">
                         </div>
                         <div class="form-group">
                             <label for="p_number">Địa chỉ</label>
-                            <input type="email" class="form-control" id="address" value="{{user.address}}">
+                            <input type="text" class="form-control" id="address" name="address" value="{{user.address}}">
                         </div>
                         <div class="form-group">
-                            <label for="email">Tên đăng nhập</label>
-                            <input class="form-control" id="user_name" value="{{user.user_name}}" disabled>
+
+                            <input class="form-control" id="user_name" name="user_name" value="{{user.user_name}}" hidden="true" >
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" value="{{user.email}}">
+                            <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
                         </div>
 
                         <div class="form-group">
-                            <label for="create_password">Tạo mật khẩu</label>
-                            <input type="password" id="create_password" class="form-control" aria-describedby="passwordHelpBlock">
+                            <label for="create_password">Xác minh mật khẩu cũ</label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" aria-describedby="passwordHelpBlock">
                             <small id="passwordHelpBlock" class="form-text text-muted">Nếu bạn không muốn tạo password, vui lòng để khoảng trắng</small>
                         </div>
                         <div class="form-group">
-                            <label for="confirm_password">Xác minh mật khẩu</label>
-                            <input type="password" id="confirm_password" class="form-control">
+                            <label for="confirm_password">Tạo mật khẩu mới</label>
+                            <input type="password" id="update_password" name="update_password" class="form-control">
+                            <small id="passwordHelpBlock" class="form-text text-muted">Nếu bạn không muốn tạo password, vui lòng để khoảng trắng</small>
                         </div>
-                        <a href="/" type="submit" class="btn bigshop-btn w-100">CẬP NHẬT THÔNG TIN</a>
+
+                        <button href="/profile" id="btn-update" type="submit" class="btn bigshop-btn w-100">CẬP NHẬT THÔNG TIN</button>
                     </form>
                 </div>
             </div>
@@ -64,4 +63,25 @@
         </div>
     </div>
 </div>
+{{#extend "profile-script"}}
+    <script>
+        $('#error-message').hide();
+        $('#confirm_password').keyup(function() {
+            $.getJSON('/api/user/checkValidPassword?user_name='+$('#user_name').val()+'&password='+$('#confirm_password').val(), function (data){
+                if (!data && $('#confirm_password').val().length > 0) {
+                    $('#error-message').show();
+                    $('#error-message').html('Xác nhận mật khẩu không khớp! Vui lòng nhập lại');
+                    $("#btn-update").attr("disabled", true);
+                }
+                else {
+
+                    $('#error-message').hide();
+                    $("#btn-update").attr("disabled", false);
+
+                }
+
+            })
+        });
+    </script>
+{{/extend}}
 <!-- <<<<<<<<<<<<<<<<<<<< My Profile Area End >>>>>>>>>>>>>>>>>>>>>>>> -->

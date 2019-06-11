@@ -6,6 +6,7 @@
             <div class="col-12 col-md-8">
                 <div class="register_form text-center">
                     <h3 class="register-title">Đăng kí miễn phí</h3>
+                    {{message}}
                     <div class="ui-state-error" id="error-message"  ></div>
                     <form action="#" method="post" class="text-left">
                         <div class="form-group">
@@ -26,7 +27,7 @@
                             <label for="confirm_password">Xác minh mật khẩu </label>
                             <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Nhập lại mật khẩu" >
                         </div>
-                        <button id="register"  type="submit" class="btn bigshop-btn w-100">Đăng kí</button>
+                        <button href="/login" id="register"  type="submit" class="btn bigshop-btn w-100">Đăng kí</button>
                     </form>
                     <div class="forget_pass mt-15">
                         <a href="login">Đã có tài khoản? Đăng nhập ngay</a>
@@ -37,11 +38,11 @@
         </div>
     </div>
 </div>
-{{#extend "regiser-scripts"}}
+{{#extend "regiser-script"}}
     <script>
         $('#error-message').hide();
         $('#user_name').keyup(function() {
-            $.getJSON('/api/user/check?user_name='+$('#user_name').val(), function (data){
+            $.getJSON('/api/user/checkExistUser?user_name='+$('#user_name').val(), function (data){
                 if (data) {
                     $('#error-message').show();
                     $('#error-message').html('Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.');
