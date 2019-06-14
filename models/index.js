@@ -16,5 +16,11 @@ const list = async () => {
     return results;
 }
 
+const listInCart =  async () => {
+    const results = await dbs.production.collection('carts').find({}).toArray();
+    return results;
+}
+exports.listInCart = listInCart;
+
 exports.detail = detail;
 exports.list = list;

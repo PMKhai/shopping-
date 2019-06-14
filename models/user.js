@@ -73,3 +73,9 @@ exports.validPassword = async (user_name, password) => {
         return false;
     return await bcrypt.compare(password, user.password);
 };
+
+const listInCart =  async () => {
+    const results = await dbs.production.collection('carts').find({}).toArray();
+    return results;
+}
+exports.listInCart = listInCart;

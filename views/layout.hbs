@@ -260,7 +260,32 @@
 
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					{{#each listInCart}}
+						<li class="header-cart-item flex-w flex-t m-b-12">
+								<div class="header-cart-item-img">
+									<img src="{{this.image}}" alt="IMG">
+								</div>
+
+								<div class="header-cart-item-txt p-t-8">
+									<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										{{this.name}}
+									</a>
+
+									
+									<script type="text/javascript">
+										var number = {{this.price}} + " x " +  {{this.quantum}} + " ="  + {{this.price}}*{{this.quantum}};
+									</script>
+									<span class="header-cart-item-info">		
+										<script type="text/javascript">
+											document.write(number)
+										</script>									
+									</span>
+								</div>
+						</li>
+
+					{{/each}}
+					{{!-- {{block "myCart"}} --}}
+					{{!-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="/images/item-cart-01.jpg" alt="IMG">
 						</div>
@@ -274,9 +299,9 @@
 								1 x $19.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					{{!-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="/images/item-cart-02.jpg" alt="IMG">
 						</div>
@@ -306,7 +331,7 @@
 								1 x $17.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
 
 				<div class="w-full">
