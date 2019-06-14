@@ -1,20 +1,30 @@
 const userModel = require('../../models/user');
-exports.recover = (req, res, next) => {
+const product = require('../../models/index');
+
+exports.recover = async (req, res, next) => {
+    const listInCart = await product.listInCart();
     res.render("customer/account/forgotpassword", {
-        title: "Quên mật khẩu"
+        title: "Quên mật khẩu",
+        listInCart
     });
 }
 
-exports.loginGet = (req, res, next) => {
+exports.loginGet = async (req, res, next) => {
+    const listInCart = await product.listInCart();
     res.render("customer/account/login", {
-        title: "Đăng nhập" , message:''
+        title: "Đăng nhập" , message:'',
+        listInCart
     });
 }
 
-exports.registerGet = (req, res) => {
-    res.render('customer/account/register', { title: 'Đăng Kí' })
+exports.registerGet = async (req, res) => {
+    const listInCart = await product.listInCart();
+    res.render("customer/account/register", { 
+        title: 'Đăng Kí',
+        listInCart
+    });
 
-};
+}
 
 
 exports.registerPost = async (req, res) => {

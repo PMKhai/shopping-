@@ -34,10 +34,12 @@ const check = async (user_name) => {
 };
 
 exports.check = check;
+
 exports.register = async (user_name,email, password) => {
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
     return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash,name:'',p_number:'',address:''});
 };
+
 exports.update = async (user_name,info) => {
     if(info.update_password != "" )
     {
@@ -79,3 +81,13 @@ const listInCart =  async () => {
     return results;
 }
 exports.listInCart = listInCart;
+
+const listFavorite =  async () => {
+    const results = await dbs.production.collection('favoriteLists').find({}).toArray();
+    return results;
+}
+exports.listFavorite = listFavorite;
+
+
+
+

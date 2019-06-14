@@ -22,5 +22,11 @@ const listInCart =  async () => {
 }
 exports.listInCart = listInCart;
 
+const listFavorite =  async () => {
+    const results = await dbs.production.collection('favoriteLists').findOne({});
+    return results;
+}
+exports.listFavorite = listFavorite;
+
 exports.detail = detail;
 exports.list = list;

@@ -31,3 +31,9 @@ exports.listInCart = listInCart;
 exports.detail = detail;
 exports.list = list;
 exports.productsBySex = productsBySex;
+
+const listFavorite =  async () => {
+    const results = await dbs.production.collection('favoriteLists').find({}).toArray();
+    return results;
+}
+exports.listFavorite = listFavorite;
