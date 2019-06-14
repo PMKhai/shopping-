@@ -260,7 +260,26 @@
 
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					{{#each listInCart}}
+						<li class="header-cart-item flex-w flex-t m-b-12">
+								<div class="header-cart-item-img">
+									<img src="{{this.image}}" alt="IMG">
+								</div>
+
+								<div class="header-cart-item-txt p-t-8">
+									<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										{{this.name}}
+									</a>
+
+									<span class="header-cart-item-info">
+										{{this.price}}*{{this.quantum}}
+									</span>
+								</div>
+						</li>
+
+					{{/each}}
+					{{!-- {{block "myCart"}} --}}
+					{{!-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="/images/item-cart-01.jpg" alt="IMG">
 						</div>
@@ -274,9 +293,9 @@
 								1 x $19.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					{{!-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="/images/item-cart-02.jpg" alt="IMG">
 						</div>
@@ -306,7 +325,7 @@
 								1 x $17.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
 
 				<div class="w-full">
@@ -518,7 +537,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 		</span>
 	</div>
 
-	<!-- Modal1 -->
+	{{!-- <!-- Modal1 -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -670,7 +689,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
     <!--===============================================================================================-->
 
