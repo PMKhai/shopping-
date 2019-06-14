@@ -271,8 +271,14 @@
 										{{this.name}}
 									</a>
 
-									<span class="header-cart-item-info">
-										{{this.price}}*{{this.quantum}}
+									
+									<script type="text/javascript">
+										var number = {{this.price}} + " x " +  {{this.quantum}} + " ="  + {{this.price}}*{{this.quantum}};
+									</script>
+									<span class="header-cart-item-info">		
+										<script type="text/javascript">
+											document.write(number)
+										</script>									
 									</span>
 								</div>
 						</li>
@@ -537,7 +543,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 		</span>
 	</div>
 
-	{{!-- <!-- Modal1 -->
+	<!-- Modal1 -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -689,7 +695,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 				</div>
 			</div>
 		</div>
-	</div> --}}
+	</div>
 
     <!--===============================================================================================-->
 
