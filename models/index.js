@@ -22,8 +22,8 @@ const listInCart =  async () => {
 }
 exports.listInCart = listInCart;
 
-const listFavorite =  async () => {
-    const results = await dbs.production.collection('favoriteLists').findOne({});
+const listFavorite =  async (user_name) => {
+    const results = await dbs.production.collection('favoriteLists').findOne({username : user_name});
     return results;
 }
 exports.listFavorite = listFavorite;

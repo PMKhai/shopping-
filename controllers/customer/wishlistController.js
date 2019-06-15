@@ -2,7 +2,7 @@ const product = require('../../models/index');
 
 exports.wishlist = async (req, res, next) => {
 	const listInCart = await product.listInCart();
-    const listFavorite = await product.listFavorite();
+    const listFavorite = await product.listFavorite(req.user.user_name);
     console.log(req.query.user_name);
     res.render('customer/wishlist', {
         tile: 'Trang chủ',

@@ -33,8 +33,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{#each listFavorite}}
-                            {{#each this.list}}
+                            {{#each listFavorite.list}}
                             <tr>
                                 <td class="action"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                                 <td class="cart_product_img">
@@ -54,7 +53,6 @@
                                 <td class="addtocart"><a href="#">Thêm vào giỏ</a></td>
                             </tr>
                             {{/each}}
-                        {{/each}}
                         {{!-- <tr>
                             <td class="action"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                             <td class="cart_product_img">
