@@ -48,7 +48,11 @@ exports.update = async (user_name,info) => {
             user_name : user_name
         }, {
             $set: {
-               password: hash
+               password: hash ,
+                name: info.name,
+                address: info.address,
+                p_number: info.p_number,
+                email: info.email
             }
         }, {
             upsert: true

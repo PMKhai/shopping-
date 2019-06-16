@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label for="confirm_password">Tạo mật khẩu mới</label>
-                            <input type="password" id="update_password" name="update_password" class="form-control">
+                            <input type="password" id="update_password" name="update_password" class="form-control" >
                             <small id="passwordHelpBlock" class="form-text text-muted">Nếu bạn không muốn tạo password, vui lòng để khoảng trắng</small>
                         </div>
 
@@ -66,15 +66,17 @@
 {{#extend "profile-script"}}
     <script>
         $('#error-message').hide();
+        $('#update_password').attr("disabled",true);
         $('#confirm_password').keyup(function() {
             $.getJSON('/api/user/checkValidPassword?user_name='+$('#user_name').val()+'&password='+$('#confirm_password').val(), function (data){
                 if (!data && $('#confirm_password').val().length > 0) {
                     $('#error-message').show();
                     $('#error-message').html('Xác nhận mật khẩu không khớp! Vui lòng nhập lại');
                     $("#btn-update").attr("disabled", true);
+                    $('#update_password').attr("disabled",true);
                 }
                 else {
-
+                    $('#update_password').attr("disabled",false);
                     $('#error-message').hide();
                     $("#btn-update").attr("disabled", false);
 
