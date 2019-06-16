@@ -11,3 +11,8 @@ exports.wishlist = async (req, res, next) => {
         listFavorite
     });
 }
+
+exports.delete = async (req, res, next) => {
+    await product.deleting(req.params.name, req.user.user_name);
+    res.redirect('/wishlist');
+}

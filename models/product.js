@@ -32,8 +32,8 @@ exports.detail = detail;
 exports.list = list;
 exports.productsBySex = productsBySex;
 
-const listFavorite =  async () => {
-    const results = await dbs.production.collection('favoriteLists').find({}).toArray();
+const listFavorite =  async (user_name) => {
+    const results = await dbs.production.collection('users').findOne({user_name : user_name});
     return results;
 }
 exports.listFavorite = listFavorite;

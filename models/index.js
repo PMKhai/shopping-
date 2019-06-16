@@ -23,10 +23,16 @@ const listInCart =  async () => {
 exports.listInCart = listInCart;
 
 const listFavorite =  async (user_name) => {
-    const results = await dbs.production.collection('favoriteLists').findOne({username : user_name});
+    const results = await dbs.production.collection('users').findOne({user_name : user_name});
     return results;
 }
 exports.listFavorite = listFavorite;
 
 exports.detail = detail;
 exports.list = list;
+
+const deleting = async (name, user) => {
+    return await dbs.production.collection('users').update({"user_name":user},{"$pull":{"favoriteProducts":{"name":name}}});
+    //const results = await dbs.production.collection('users').findOne({user_name : user}).find({},{favoriteProducts:1});
+}
+exports.deleting = deleting;
