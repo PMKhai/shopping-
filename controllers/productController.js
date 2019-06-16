@@ -18,6 +18,7 @@ exports.product_detail = async (req, res, next) => {
 
     const productdetail = await product.detail(req.params.id);
     const productsList = await product.productsBySex(productdetail.sex);
+    const listInCart = await product.listInCart();
     console.log(productdetail);
     console.log(productsList);
     res.render('product/product-detail', {
