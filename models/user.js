@@ -35,12 +35,28 @@ const check = async (user_name) => {
 
 exports.check = check;
 
-exports.register = async (user_name,email, password) => {
+exports.register = async (user_name,email, password,token) => {
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
-    return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash,name:'',p_number:'',address:''});
+    return await dbs.production.collection(USERS).insertOne({user_name,email, password: hash,name:'',
+        p_number:'',address:'',token:token,isActivated: false});
 };
 
-exports.update = async (user_name,info) => {
+exports.update = async (user_name,info,token) => {
+    const user = await dbs.production.collection(USERS).findOne({user_name});
+    if(info.email != user.email )
+    {
+        return await dbs.production.collection(USERS).updateOne({
+            user_name : user_name
+        }, {
+            $set: {
+                email: info.email,
+                token: token,
+                isActivated : false,
+            }
+        }, {
+            upsert: true
+        })
+    }
     if(info.update_password != "" )
     {
         const hash = await bcrypt.hash(info.update_password, SALT_ROUNDS);
@@ -52,7 +68,6 @@ exports.update = async (user_name,info) => {
                 name: info.name,
                 address: info.address,
                 p_number: info.p_number,
-                email: info.email
             }
         }, {
             upsert: true
@@ -66,7 +81,6 @@ exports.update = async (user_name,info) => {
             name: info.name,
             address: info.address,
             p_number: info.p_number,
-            email: info.email,
         }
     }, {
         upsert: true
@@ -79,7 +93,27 @@ exports.validPassword = async (user_name, password) => {
         return false;
     return await bcrypt.compare(password, user.password);
 };
+exports.verifyemail = async (token) => {
 
+    const user = await dbs.production.collection(USERS).findOne({token});
+    if(user)
+    {
+        await dbs.production.collection(USERS).updateOne({
+            token : token
+        }, {
+            $set: {
+                isActivated: true,
+            },
+            $unset: {
+                token: 1,
+            }
+        }, {
+            upsert: true
+        })
+    }
+    return user;
+
+};
 const listInCart =  async () => {
     const results = await dbs.production.collection('carts').find({}).toArray();
     return results;
