@@ -123,11 +123,15 @@ exports.verifyemail = async (token) => {
     return user;
 
 };
-const listInCart =  async () => {
-    const results = await dbs.production.collection('carts').find({}).toArray();
+//cart space/////////
+const listInCart =  async (user_name) => {
+
+    var results = await dbs.production.collection('users').findOne({user_name : user_name});
+
     return results;
 }
 exports.listInCart = listInCart;
+////////////////////
 
 const listFavorite =  async (user_name) => {
     const results = await dbs.production.collection(USERS).findOne({user_name : user_name});
