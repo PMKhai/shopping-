@@ -32,7 +32,17 @@ const check = async (user_name) => {
         return true;
     return false;
 };
+exports.checkIsActivated = async (user_name) => {
 
+    if(await check(user_name))
+    {
+        const  user =  await get(user_name);
+        if(user.isActivated)
+            return  user;
+    }
+    return  false;
+
+}
 exports.check = check;
 
 exports.register = async (user_name,email, password,token) => {
@@ -88,6 +98,9 @@ exports.changepassword = async (user_name,info) => {
           }, {
               $set: {
                  password: hash ,
+              },
+              $unset: {
+                  recoverToken: 1,
               }
           }, {
               upsert: true
@@ -115,6 +128,39 @@ exports.verifyemail = async (token) => {
             },
             $unset: {
                 token: 1,
+            }
+        }, {
+            upsert: true
+        })
+    }
+    return user;
+
+};
+exports.addRecoverToken = async (user_name,recoveryToken) => {
+
+
+    return await dbs.production.collection(USERS).updateOne({
+        user_name : user_name
+    }, {
+        $set: {
+            recoverToken: recoveryToken ,
+        }
+    }, {
+        upsert: true
+    })
+
+
+};
+exports.verifyRecoverToken = async (recoverToken) => {
+
+    const user = await dbs.production.collection(USERS).findOne({recoverToken});
+    if(user)
+    {
+        await dbs.production.collection(USERS).updateOne({
+            token : recoverToken
+        }, {
+            $unset: {
+                recoverToken: 1,
             }
         }, {
             upsert: true

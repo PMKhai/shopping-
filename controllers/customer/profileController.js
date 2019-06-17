@@ -11,13 +11,9 @@ exports.profile = async (req, res, next) => {
     const listFavorite = await product.listFavorite(req.user.user_name);
 
     res.render('customer/profile', {
-<<<<<<< HEAD
-        title: 'Thông tin tài khoản',user: req.user,
-        listInCart
-=======
         tile: 'Thông tin tài khoản',user: req.user,
         listInCart,
         listFavorite
->>>>>>> 220386fa8be7ae57680ede36af5f931c8441c926
+
     });
 }
