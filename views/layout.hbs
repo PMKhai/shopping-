@@ -118,6 +118,7 @@
                             <li disabled="true"><a>Chào, {{user.user_name}} !</a ></li>
                             <li><a href="/profile">Thông tin tài khoản</a></li>
                             <li><a href="/order">Đơn hàng của bạn</a></li>
+                            <li><a href="/changepassword">Đổi mật khẩu</a></li>
                             <li><a href="/logout">Đăng xuất</a></li>
                         </div>
                     </div>
@@ -823,7 +824,8 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 <!--===============================================================================================-->
     {{{block "regiser-script"}}}
     {{{block "login-script"}}}
-    {{{block "profile-script"}}}
+    {{{block "changepassword-script"}}}
+    {{{block "recoverpassword-script"}}}
 <!--===============================================================================================-->
     <script>
         if ($({{user}}).val() == null ) {

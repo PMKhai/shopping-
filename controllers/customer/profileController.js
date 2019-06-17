@@ -14,5 +14,6 @@ exports.profile = async (req, res, next) => {
         tile: 'Thông tin tài khoản',user: req.user,
         listInCart,
         listFavorite
+
     });
 }
