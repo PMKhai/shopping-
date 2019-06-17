@@ -14,5 +14,5 @@ exports.contact = async (req, res, next) => {
 
 exports.sendContact = async (req, res, next) => {
     await product.send_Contact(req.body);
-    res.redirect('./');
+    res.redirect('/contact');
 }
