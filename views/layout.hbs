@@ -150,7 +150,7 @@
 				</div>
 				<script type="text/javascript">
 					var i = 0;
-					foreach (var item in listInCart){
+					foreach (var item in listInCart.cart){
 						i++;
 					}
 				</script>
@@ -267,7 +267,7 @@
 
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					{{#each listInCart}}
+					{{#each listInCart.cart}}
 						<li class="header-cart-item flex-w flex-t m-b-12">
 								<div class="header-cart-item-img">
 									<img src="{{this.image}}" alt="IMG">
@@ -703,7 +703,6 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 			</div>
 		</div>
 	</div>
-
     <!--===============================================================================================-->
 
     <!-- Popper js -->
@@ -757,32 +756,39 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 		});
 	</script>
 <!--===============================================================================================-->
+	<script>
+		if ($({{user}}).val() == null ) {
+			$('.js-addwish-b2').hide();
+		}
+	</script>
+<!--===============================================================================================-->
 	<script src="/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
+			e.preventDefault();	
 		});
-
+		//var username = $({{user}}).val();
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "đã được thêm vào danh sách yêu thích !", "success");
 
+			$(this).on('click', function(){		
+				swal(nameProduct, "đã được thêm vào danh sách yêu thích !", "success");
 				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
+				$(this).off('click');		
+				console.log("đã thêm");
 			});
 		});
 
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-			$(this).on('click', function(){
-				swal(nameProduct, "đã được thêm vào danh sách yêu thích !", "success");
-
-				$(this).addClass('js-addedwish-detail');
+			$(this).on('click', function(e){
+				swal(nameProduct, "đã được thêm vào danh sách yêu thích !", "success");			
+				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
+				
 			});
 		});
 
@@ -829,7 +835,7 @@ Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> �
 <!--===============================================================================================-->
 	<script>
 		var numberOfProductsInCart = 0;
-		foreach (var item in listInCart){
+		foreach (var item in listInCart.cart){
 			numberOfProductsInCart++;
 		}
 		$("#myNumOfDiv").attr("notify", "10"); // yes change you atribute
