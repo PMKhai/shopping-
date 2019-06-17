@@ -2,15 +2,9 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 var account_controller = require('../../controllers/customer/accountController');
-var nodemailer = require("nodemailer");
+
 //
-var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: "edogawaconanhuyx98@gmail.com",
-        pass: "Cotroimoibiet1"
-    }
-});
+
 
 router.get('/forgotpassword', account_controller.recover);
 
@@ -21,7 +15,9 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
 }));
-router.post('/:id', account_controller.updatePost);
+
 router.get('/logout', account_controller.logout);
 router.get('/verify', account_controller.verify);
+router.get('/changepassword', account_controller.changepasswordGet);
+router.post('/changepassword', account_controller.changepasswordPost);
 module.exports = router;

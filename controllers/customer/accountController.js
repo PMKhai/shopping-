@@ -25,11 +25,20 @@ exports.registerGet = async (req, res) => {
     const listInCart = await product.listInCart();
     res.render("customer/account/register", { 
         title: 'Đăng Kí',
-        listInCart
+        listInCart,
     });
 
 }
-
+exports.changepasswordGet = async (req, res, next) => {
+    if(!req.user)
+        res.redirect("/login");
+    const listInCart = await product.listInCart();
+    res.render("customer/account/changepassword", {
+        title: "Thay đổi mật khẩu" ,
+        user: req.user,
+        listInCart
+    });
+}
 const sendmailto = async (req, res) => {
     const  token = await bcrypt.hash(req.body.user_name,0);
 
@@ -74,10 +83,23 @@ exports.logout = (req,res) => {
     res.redirect('/login');
 };
 exports.updatePost = async (req, res, next) => {
-    const  token = await sendmailto(req,res);
+    // check if email was changed then verify new email
+    const user = await userModel.get(req.user.user_name);
+    var token = "";
+
+    if(user.email != req.body.email)
+    {
+        token = await sendmailto(req,res);
+    }
     await userModel.update(req.user.user_name,req.body,token);
 
     res.redirect('./profile');
+}
+exports.changepasswordPost = async (req, res, next) => {
+
+    await userModel.changepassword(req.user.user_name,req.body);
+
+    res.redirect('./login');
 }
 exports.verify = async (req, res, next) => {
     var message = "Lỗi xác thực";

@@ -41,33 +41,23 @@ exports.register = async (user_name,email, password,token) => {
         p_number:'',address:'',token:token,isActivated: false});
 };
 
+
+
 exports.update = async (user_name,info,token) => {
-    const user = await dbs.production.collection(USERS).findOne({user_name});
-    if(info.email != user.email )
+
+    if(token != "") // email was changed
     {
         return await dbs.production.collection(USERS).updateOne({
             user_name : user_name
         }, {
             $set: {
+                name: info.name,
+                dob: info.dob,
+                address: info.address,
+                p_number: info.p_number,
                 email: info.email,
                 token: token,
                 isActivated : false,
-            }
-        }, {
-            upsert: true
-        })
-    }
-    if(info.update_password != "" )
-    {
-        const hash = await bcrypt.hash(info.update_password, SALT_ROUNDS);
-        return await dbs.production.collection(USERS).updateOne({
-            user_name : user_name
-        }, {
-            $set: {
-               password: hash ,
-                name: info.name,
-                address: info.address,
-                p_number: info.p_number,
             }
         }, {
             upsert: true
@@ -81,10 +71,29 @@ exports.update = async (user_name,info,token) => {
             name: info.name,
             address: info.address,
             p_number: info.p_number,
+            dob: info.dob
         }
     }, {
         upsert: true
     })
+};
+exports.changepassword = async (user_name,info) => {
+
+
+      if(info.update_password != "" )
+      {
+          const hash = await bcrypt.hash(info.update_password, SALT_ROUNDS);
+          return await dbs.production.collection(USERS).updateOne({
+              user_name : user_name
+          }, {
+              $set: {
+                 password: hash ,
+              }
+          }, {
+              upsert: true
+          })
+      }
+
 };
 exports.validPassword = async (user_name, password) => {
     //const hash = await bcrypt.hash(password, SALT_ROUNDS);

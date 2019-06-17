@@ -5,7 +5,7 @@ exports.profile = async (req, res, next) => {
         res.redirect("/login");
     const listInCart = await product.listInCart();
     res.render('customer/profile', {
-        tile: 'Thông tin tài khoản',user: req.user,
+        title: 'Thông tin tài khoản',user: req.user,
         listInCart
     });
 }
