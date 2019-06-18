@@ -49,7 +49,7 @@
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
+					<input onkeyup="myFunction()" id="myInput" class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
 						placeholder="Search">
 				</div>
 			</div>
@@ -249,10 +249,9 @@
 			</div>
 		</div>
 
-		<div class="row isotope-grid">
-
+		<div id="divGrandFather" style="" class="row isotope-grid" style="height: auto;">
 			{{#each productList}}
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{this.sex}} {{this.category}}">
+			<div id="divFather" style="float:right;" class="col-lg-3  isotope-item {{this.sex}} {{this.category}}">
 				<!-- Block2 -->
 				<div class="block2">
 					<div class="block2-pic hov-img0">
@@ -266,7 +265,7 @@
 
 					<div class="block2-txt flex-w flex-t p-t-14">
 						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/{{this._id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							<a id="aSon" href="product/{{this._id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 								{{this.name}}
 							</a>
 
@@ -298,3 +297,26 @@
 	</div>
 </div>
 <!-- Modal1 -->
+<script>
+function myFunction() {
+    var input, filter, divGrandFather, divFather, aSon, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    divGrandFather = document.getElementById("divGrandFather");
+	divFather = divGrandFather.getElementsByTagName("div");
+	//console.log(divFather.item(0));
+    for (i = 0; i < divFather.length;) {
+		console.log(divFather.item(i).getElementsByTagName("a").item(1).innerHTML);
+		aSon = divFather.item(i).getElementsByTagName("a").item(1);
+        txtValue = aSon.innerHTML;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            divFather[i].style.display = "";
+			divFather[i].style.visibility = 'visible';
+        } else {
+            divFather[i].style.display = "none";
+			divFather[i].style.visibility = 'hidden';
+        }
+		i = i +6;
+    }
+}
+</script>
