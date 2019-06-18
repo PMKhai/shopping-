@@ -48,7 +48,7 @@ _________________________________________________________ -->
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Đặt</th>
+                                    <th>Mã</th>
                                     <th>Ngày</th>
                                     <th>Tổng</th>
                                     <th>Trạng thái</th>
@@ -56,51 +56,17 @@ _________________________________________________________ -->
                                 </tr>
                                 </thead>
                                 <tbody>
+                            {{#each listorder}}
                                 <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-info">Đang tiến hành</span>
+                                    <th>#{{this.id}}</th>
+                                    <td>{{this.date}}</td>
+                                    <td>{{this.total}} VNĐ</td>
+                                    <td><span class="label label-info">{{this.status}}</span>
                                     </td>
-                                    <td><a href="/oder/detail" class="btn btn-template-main btn-sm">Xem</a>
+                                    <td><a href="/order/{{@index}}" class="btn btn-template-main btn-sm">Xem</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-info">Đang tiến hành</span>
-                                    </td>
-                                    <td><a href="/oder/detail" class="btn btn-template-main btn-sm">Xem</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-success">Đã nhận</span>
-                                    </td>
-                                    <td><a href="/oder/detail" class="btn btn-template-main btn-sm">Xem</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-danger">Đã huỷ</span>
-                                    </td>
-                                    <td><a href="/oder/detail" class="btn btn-template-main btn-sm">Xem</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-warning">Đang giữ</span>
-                                    </td>
-                                    <td><a href="/oder/detail" class="btn btn-template-main btn-sm">Xem</a>
-                                    </td>
-                                </tr>
+                            {{/each}}
                                 </tbody>
                             </table>
                         </div>

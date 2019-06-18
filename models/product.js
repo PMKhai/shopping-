@@ -22,7 +22,22 @@ const productsBySex = async (sexs) => {
     }).toArray();
     return results;
 }
+//cart space/////////
+const listInCart =  async (user_name) => {
+
+    var results = await dbs.production.collection('users').findOne({user_name : user_name});
+
+    return results;
+}
+exports.listInCart = listInCart;
+////////////////////
 
 exports.detail = detail;
 exports.list = list;
 exports.productsBySex = productsBySex;
+
+const listFavorite =  async (user_name) => {
+    const results = await dbs.production.collection('users').findOne({user_name : user_name});
+    return results;
+}
+exports.listFavorite = listFavorite;

@@ -10,6 +10,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 //
 
+//
 //Customer
 ///Cart
 var checkoutRouter = require('./routes/customer/cart/checkout');
@@ -129,4 +130,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
 module.exports = app;
+
+

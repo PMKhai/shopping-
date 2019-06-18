@@ -15,7 +15,7 @@ _________________________________________________________ -->
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>Đơn hàng # 1735</h1>
+                    <h1>Đơn hàng  #{{detailorder.id}} </h1>
                 </div>
                 <div class="col-md-5">
                     <ul class="breadcrumb">
@@ -24,7 +24,7 @@ _________________________________________________________ -->
                         </li>
                         <li><a href="/oder">Hàng đã đặt</a>
                         </li>
-                        <li>Đơn hàng # 1735</li>
+                        <li>Đơn hàng #{{detailorder.id}}</li>
                     </ul>
                 </div>
             </div>
@@ -42,8 +42,8 @@ _________________________________________________________ -->
 
                 <div class="col-md-9 clearfix" id="customer-order">
 
-                    <p class="lead">Đơn hàng #1735 được đặt vào <strong>22/06/2013</strong> và hiện tại <strong>đăng trong quá trình xác minh</strong>.</p>
-                    <p class="text-muted lead">Nếu có bất kì câu hỏi, vui lòng <a href="contact">liên lạc với chúng tôi</a>, hỗ trợ khách hàng 24/7.</p>
+                    <p class="lead">Đơn hàng #{{detailorder.id}} được đặt vào <strong>{{detailorder.date}}</strong> và hiện tại <strong>đăng trong quá trình xác minh</strong>.</p>
+                    <p class="text-muted lead">Nếu có bất kì câu hỏi, vui lòng <a href="/contact">liên lạc với chúng tôi</a>, hỗ trợ khách hàng 24/7.</p>
 
                     <div class="box">
                         <div class="table-responsive">
@@ -58,49 +58,38 @@ _________________________________________________________ -->
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {{#each detailorder.productlist}}
                                 <tr>
                                     <td>
                                         <a href="#">
                                             <img src="/images/detailsquare.jpg" alt="White Blouse Armani">
                                         </a>
                                     </td>
-                                    <td><a href="#">White Blouse Armani</a>
+                                    <td><a >{{this.name}}</a>
                                     </td>
-                                    <td>2</td>
-                                    <td>$123.00</td>
-                                    <td>$0.00</td>
-                                    <td>$246.00</td>
+                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.unitprice}} VNĐ</td>
+                                    <td>{{this.discount}} VNĐ</td>
+                                    <td>{{this.total}} VNĐ</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            <img src="/images/basketsquare.jpg" alt="Black Blouse Armani">
-                                        </a>
-                                    </td>
-                                    <td><a href="#">Black Blouse Armani</a>
-                                    </td>
-                                    <td>1</td>
-                                    <td>$200.00</td>
-                                    <td>$0.00</td>
-                                    <td>$200.00</td>
-                                </tr>
+                                {{/each}}
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th colspan="5" class="text-right">Giá sản phẩm</th>
-                                    <th>$446.00</th>
+                                    <th>{{detailorder.total}} VNĐ</th>
                                 </tr>
                                 <tr>
                                     <th colspan="5" class="text-right">Chi phí vận chuyển</th>
-                                    <th>$10.00</th>
+                                    <th>{{detailorder.shipping-fee}} VNĐ</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="5" class="text-right">Thuế</th>
-                                    <th>$0.00</th>
+                                    <th colspan="5" class="text-right">Giảm giá</th>
+                                    <th>{{detailorder.discount}} VNĐ</th>
                                 </tr>
                                 <tr>
                                     <th colspan="5" class="text-right">Tổng cộng</th>
-                                    <th>$456.00</th>
+                                    <th>{{detailorder.total}} VNĐ</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -111,21 +100,17 @@ _________________________________________________________ -->
                         <div class="row addresses">
                             <div class="col-sm-6">
                                 <h3 class="text-uppercase">Địa chỉ người đặt hàng</h3>
-                                <p>Kha Leo
-                                    <br>123/20 Đặng Văn Bi
-                                    <br>KP5
-                                    <br>Phường Trường Thọ
-                                    <br>Quận Thủ Đức
-                                    <br>tp Hồ Chí Minh</p>
+                                <p>{{detailorder.info-order.name}}
+                                    <br>{{detailorder.info-order.address}}
+                                    <br>{{detailorder.info-order.p_number}}
+                                </p>
                             </div>
                             <div class="col-sm-6">
                                 <h3 class="text-uppercase">Địa chỉ giao hàng</h3>
-                                <p>Kha Leo
-                                    <br>123/20 Đặng Văn Bi
-                                    <br>KP5
-                                    <br>Phường Trường Thọ
-                                    <br>Quận Thủ Đức
-                                    <br>tp Hồ Chí Minh</p>
+                                <p>{{detailorder.info-receive.name}}
+                                    <br>{{detailorder.info-receive.address}}
+                                    <br>{{detailorder.info-receive.p_number}}
+                                </p>
                             </div>
                         </div>
                         <!-- /.addresses -->

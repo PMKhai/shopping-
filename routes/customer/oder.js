@@ -6,5 +6,5 @@ var oder_controller = require('../../controllers/customer/oderController');
 
 router.get('/', oder_controller.oder_list);
 
-router.get('/detail', oder_controller.oder_detail);
+router.get('/:id', oder_controller.order_detail);
 module.exports = router;
