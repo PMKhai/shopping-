@@ -34,45 +34,40 @@
             <div class="col-12 col-md-6">
 
 
-                    <form action="#" method="POST" class="text-left">
+                <form action="#" method="POST" class="text-left">
 
-                        <div class="form-group">
-                            <label for="first_name">Họ và tên</label>
-                            <input type="text"  class="form-control" id="name" name="name" value="{{user.name}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="p_number">Giới tính</label>
-                            <select class="form-control" id="exampleFormControlSelect1" >
-                                <option>Nam</option>
-                                <option>Nữ</option>
-                                <option>Khác</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="p_number">Ngày tháng năm sinh</label>
-                            <input type="date" class="form-control" id="dob" name="dob"  value="{{user.dob}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="p_number">Số điện thoại</label>
-                            <input type="text" class="form-control" id="p_number" name="p_number"  value="{{user.p_number}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="p_number">Địa chỉ</label>
-                            <input type="text" class="form-control" id="address" name="address" value="{{user.address}}">
-                        </div>
-                        <div class="form-group">
+                    <div class="form-group">
+                        <label for="first_name">Họ và tên</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                    </div>
 
-                            <input class="form-control" id="user_name" name="user_name" value="{{user.user_name}}" hidden="true" >
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
-                        </div>
+                    <div class="form-group">
+                        <label for="p_number">Ngày tháng năm sinh</label>
+                        <input type="date" class="form-control" id="dob" name="dob" value="{{user.dob}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="p_number">Số điện thoại</label>
+                        <input type="text" class="form-control" id="p_number" name="p_number" value="{{user.p_number}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="p_number">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{user.address}}">
+                    </div>
+                    <div class="form-group">
+
+                        <input class="form-control" id="user_name" name="user_name" value="{{user.user_name}}"
+                            hidden="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
+                    </div>
 
 
 
-                        <button href="/profile" id="btn-update" type="submit" class="btn bigshop-btn w-100">CẬP NHẬT THÔNG TIN</button>
-                    </form>
+                    <button href="/profile" id="btn-update" type="submit" class="btn bigshop-btn w-100">CẬP NHẬT THÔNG
+                        TIN</button>
+                </form>
             </div>
 
 
